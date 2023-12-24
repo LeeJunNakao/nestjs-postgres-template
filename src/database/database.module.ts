@@ -1,7 +1,7 @@
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
-import { AdminOrm } from 'src/modules/admin/admin.orm';
+import { UserOrm } from '@/auth/entities/auth.orm';
 
 export const DatabaseModule = TypeOrmModule.forRootAsync({
   imports: [ConfigModule],
@@ -14,7 +14,7 @@ export const DatabaseModule = TypeOrmModule.forRootAsync({
       username: configService.get('DATABASE_USERNAME'),
       password: configService.get('DATABASE_PASSWORD'),
       database: configService.get('DATABASE_NAME'),
-      entities: [AdminOrm],
+      entities: [UserOrm],
       synchronize: false,
       namingStrategy: new SnakeNamingStrategy(),
     };
